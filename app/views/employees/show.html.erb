@@ -5,3 +5,8 @@
 <h4><%= @employee["name"] %></h4>
 <h5><%= @employee["birthdate"] %></h5>
 <h6><%= @employee["email"] %></h6>
+
+
+<br />
+
+<%= link_to "Delete Employee", "/employees/#{@employee['id']}", method: :delete %>
