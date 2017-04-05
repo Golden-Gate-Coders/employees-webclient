@@ -1,0 +1,14 @@
+<h1>New Employee</h1>
+
+
+<%= form_tag "/employees", method: :post do %>
+  Name: <input type="text" name="name">
+  <br />
+  Email: <input type="text" name="email">
+  <br />
+  Birthdate: <input type="text" name="birthdate">
+  <br />
+  SSN: <input type="text" name="ssn">
+  <br />
+  <input type="submit" value="Create Employee!">
+<% end %>
