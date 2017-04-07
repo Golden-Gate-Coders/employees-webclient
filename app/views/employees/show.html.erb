@@ -2,11 +2,11 @@
 
 <h3>Looking for Employee ID #<%= @id %></h3>
 
-<h4><%= @employee["name"] %></h4>
-<h5><%= @employee["birthdate"] %></h5>
-<h6><%= @employee["email"] %></h6>
+<h4><%= @employee.allcaps_name %></h4>
+<h4><%= @employee.email %></h4>
+<h4><%= @employee.ssn %></h4>
 
+
+<%= @employee.inspect %>
 
 <br />
-
-<%= link_to "Delete Employee", "/employees/#{@employee['id']}", method: :delete %>
