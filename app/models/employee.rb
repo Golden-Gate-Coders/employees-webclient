@@ -25,4 +25,49 @@ class Employee
     Employee.new(employee_hash)
   end
 
+
+  # Employee.all
+  def self.all
+    employees_api_array = Unirest.get("http://localhost:3000/api/v1/employees.json").body
+
+    employees = []
+    employees_api_array.each do |employee_hash|
+      employees << Employee.new(employee_hash)
+    end
+
+    return employees
+  end
+
+  # Employee.create
+  def self.create(name, email, birthdate, ssn)
+    employee = Unirest.post("http://localhost:3000/api/v1/employees",
+        :headers => { "Accept" => "application/json" },
+        :parameters => { :name => name,
+            :email => email,
+            :birthdate => birthdate,
+            :ssn => ssn
+        }
+      ).body
+    return employee
+  end
+
+  # Employee.update
+  def self.update(id, name, email, birthdate, ssn)
+    employee = Unirest.patch("http://localhost:3000/api/v1/employees/#{id}",
+        :headers => { "Accept" => "application/json" },
+        :parameters => { :name => name,
+            :email => email,
+            :birthdate => birthdate,
+            :ssn => ssn
+        }
+      ).body
+    return employee
+  end
+
+  def destroy
+    Unirest.delete("http://localhost:3000/api/v1/employees/#{id}", 
+      :headers => { "Accept" => "application/json" })
+  end
+
+
 end

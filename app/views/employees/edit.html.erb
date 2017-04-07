@@ -2,13 +2,13 @@
 
 
 <%= form_tag "/employees/#{@employee_id}", method: :patch do %>
-  Name: <input type="text" name="name" value="<%= @employee['name'] %>">
+  Name: <input type="text" name="name" value="<%= @employee.name %>">
   <br />
-  Email: <input type="text" name="email" value="<%= @employee['email'] %>">
+  Email: <input type="text" name="email" value="<%= @employee.email %>">
   <br />
-  Birthdate: <input type="text" name="birthdate" value="<%= @employee['birthdate'] %>">
+  Birthdate: <input type="text" name="birthdate" value="<%= @employee.birthdate %>">
   <br />
-  SSN: <input type="text" name="ssn" value="<%= @employee['ssn'] %>">
+  SSN: <input type="text" name="ssn" value="<%= @employee.ssn %>">
   <br />
   <input type="submit" value="Update Employee!">
 <% end %>

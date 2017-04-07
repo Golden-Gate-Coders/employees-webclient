@@ -6,59 +6,34 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    employees_api_array = Unirest.get("http://localhost:3000/api/v1/employees.json").body
-
-    @employees = []
-    employees_api_array.each do |employee_hash|
-      @employees << Employee.new(employee_hash)
-    end
-
-
+    @employees = Employee.all
   end
 
   def new
   end
 
   def create
-    @employee = Unirest.post("http://localhost:3000/api/v1/employees",
-        :headers => { "Accept" => "application/json" },
-        :parameters => { :name => params[:name],
-            :email => params[:email],
-            :birthdate => params[:birthdate],
-            :ssn => params[:ssn]
-        }
-      ).body
-
+    # @employee = Employee.create(params)
+    @employee = Employee.create(params[:name], params[:email], params[:birthdate], params[:ssn])
     redirect_to "/employees/#{@employee['id']}"
   end
 
 
   def edit
     @employee_id = params[:id]
-    @employee = Unirest.get("http://localhost:3000/api/v1/employees/#{@employee_id}.json").body
+    @employee = Employee.find(@employee_id)
   end
 
   def update
-    @employee = Unirest.patch("http://localhost:3000/api/v1/employees/#{params[:id]}",
-        :headers => { "Accept" => "application/json" },
-        :parameters => { :name => params[:name],
-            :email => params[:email],
-            :birthdate => params[:birthdate],
-            :ssn => params[:ssn]
-        }
-      ).body
+    @employee = Employee.update(params[:id], params[:name], params[:email], params[:birthdate], params[:ssn])
 
     redirect_to "/employees/#{@employee['id']}"
   end
 
   def destroy
-    Unirest.delete("http://localhost:3000/api/v1/employees/#{params[:id]}", 
-      :headers => { "Accept" => "application/json" })
-
+    @employee = Employee.find(params[:id])
+    @employee.destroy
     redirect_to "/employees"
   end
-
-
-
 
 end
