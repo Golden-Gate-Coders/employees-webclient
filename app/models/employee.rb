@@ -1,8 +1,9 @@
 class Employee
-  attr_accessor :name, :email, :birthdate, :ssn
+  attr_accessor :id, :name, :email, :birthdate, :ssn
 
   # Employee.new(name: "Danish", email: "")
   def initialize(employee_params)
+    @id = employee_params["id"]
     @name = employee_params["name"]
     @email = employee_params["email"]
     @birthdate = employee_params["birthdate"]
