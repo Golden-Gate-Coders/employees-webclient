@@ -1,10 +1,9 @@
 <h1>All Employees</h1>
 
-
 <% @employees.each do |employee| %>
-  Name: <%= employee["name"] %>
+  Name: <%= employee.allcaps_name %>
   <br />
-  Email: <%= employee["email"] %>
+  Email: <%= employee.email %>
   <br />
   <br />
 <% end %>

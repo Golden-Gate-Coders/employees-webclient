@@ -10,7 +10,19 @@ class Employee
     @ssn = employee_params["ssn"]
   end
 
+  # Instance Method
+  # @employee.allcaps_name
   def allcaps_name
     @name.upcase
   end
+
+  # Class Method
+  # Employee.find
+  def self.find(id)
+    # Get 
+    employee_hash = Unirest.get("http://localhost:3000/api/v1/employees/#{id}.json").body
+    # Should return an employee with id 'id'
+    Employee.new(employee_hash)
+  end
+
 end
